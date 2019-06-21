@@ -1,0 +1,75 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Multiuser TODO list</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ getActiveUserName() }}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <ng-container *ngFor="let user of users">
+              <li *ngIf="!user.active">
+                <a href="#" class="user-name" (click)="chooseUser(user.id)">{{ user.name }}</a>
+                <i class="fa fa-trash user-delete-icon" (click)="openDeleteUserModal(user.id, deleteUserTemplate)"></i>
+              </li>
+              <h5 class="text-center text-muted" *ngIf="users.length === 1">No other users</h5>
+            </ng-container>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i (click)="openModal(newUserTemplate)" class="fa fa-plus"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- New user modal template -->
+<ng-template #newUserTemplate>
+  <div class="modal-header ">
+    <h4 class="modal-title pull-left ">Add new user</h4>
+    <button type="button " class="close pull-right " aria-label="Close " (click)="closeModal() ">
+      <span aria-hidden="true ">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body ">
+    <div>
+      <label for="name ">User name</label>
+      <input class="form-control " type="text " name="name " placeholder="Enter user name " [(ngModel)]="newUser.name ">
+    </div>
+  </div>
+  <div class="modal-footer ">
+    <button type="button " class="btn btn-light " (click)="closeModal() ">Cancel</button>
+    <button type="button " class="btn btn-warning " (click)="saveNewUser() ">Save</button>
+  </div>
+</ng-template>
+
+<!-- Delete user modal template -->
+<ng-template #deleteUserTemplate>
+  <div class="modal-header ">
+    <h4 class="modal-title pull-left ">Delete user</h4>
+    <button type="button " class="close pull-right " aria-label="Close " (click)="closeModal() ">
+      <span aria-hidden="true ">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body ">
+    Do you want to delete user ?
+  </div>
+  <div class="modal-footer ">
+    <button type="button " class="btn btn-light " (click)="closeModal() ">Cancel</button>
+    <button type="button " class="btn btn-warning " (click)="deleteUser() ">Delete</button>
+  </div>
+</ng-template>

@@ -1,0 +1,24 @@
+<div class="text-center">
+  <label for="searchType">Search by:
+    <select [(ngModel)]="searchType" class="form-control search-by-type" id="searchType">
+      <option [ngValue]="'title'">Title</option>
+      <option [ngValue]="'place'">Place</option>
+      <option [ngValue]="'address'">Address</option>
+    </select>
+  </label>
+
+  <!-- Search by title -->
+  <input type="text" class="form-control search-by-type" [(ngModel)]="title" *ngIf="searchType === 'title'" placeholder="Enter title">
+
+  <!-- Search by place -->
+  <input type="text" class="form-control search-by-type" [(ngModel)]="place" *ngIf="searchType === 'place'" placeholder="Enter place">
+
+  <!-- Search by address -->
+  <input type="text" class="form-control search-by-type" [(ngModel)]="address" *ngIf="searchType === 'address'" placeholder="Enter address">
+
+  <!-- Search -->
+  <button type="button" class="btn btn-info" (click)="search()">
+    Search
+    <i class="fa fa-angle-double-down"></i>
+  </button>
+</div>

@@ -1,0 +1,32 @@
+<div class="text-center">
+  <label for="filterType">Filter by:
+    <select [(ngModel)]="filterType" class="form-control filter-by-type" id="filterType">
+      <option [ngValue]="'status'">Status</option>
+      <option [ngValue]="'date'">Date</option>
+      <option [ngValue]="'place'">Place</option>
+      <option [ngValue]="'address'">Address</option>
+    </select>
+  </label>
+
+  <!-- Filter by status -->
+  <select [(ngModel)]="status" class="form-control filter-by-type" id="filterType" *ngIf="filterType === 'status'">
+    <option [ngValue]="'done'">Done</option>
+    <option [ngValue]="'not done'">Not done</option>
+  </select>
+
+  <!-- Filter by date -->
+  <input type="date" class="form-control filter-by-type" [ngModel]="date | date: 'yyyy-MM-dd'" (ngModelChange)="date = $event"
+    *ngIf="filterType === 'date'">
+
+  <!-- Filter by place -->
+  <input type="text" class="form-control filter-by-type" [(ngModel)]="place" *ngIf="filterType === 'place'" placeholder="Enter place">
+
+  <!-- Filter by address -->
+  <input type="text" class="form-control filter-by-type" [(ngModel)]="address" *ngIf="filterType === 'address'" placeholder="Enter address">
+
+  <!-- Apply filter -->
+  <button type="button" class="btn btn-info" (click)="applyFilter()">
+    Apply
+    <i class="fa fa-angle-double-down"></i>
+  </button>
+</div>

@@ -1,0 +1,18 @@
+<div class="record-section">
+  <div class="panel" [ngClass]="{'panel-default': notOutdated(), 'panel-info': isForToday(), 'panel-warning': outdated(), 'panel-success': record.status}">
+    <div class="panel-heading">
+      {{ record.title }}
+      <div class="pull-right record-actions">
+        <i class="fa fa-edit" (click)="editRecord()"></i>
+        <i class="fa fa-trash" (click)="deleteRecord()"></i>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p>Description: {{ record.description }}</p>
+      <p>Status: {{ record.status ? 'Done' : 'Not done' }}</p>
+      <p>Date: {{ getDate() }}</p>
+      <p>Place: {{ record.placeName }}</p>
+      <p>Address: {{ record.address }}</p>
+    </div>
+  </div>
+</div>
