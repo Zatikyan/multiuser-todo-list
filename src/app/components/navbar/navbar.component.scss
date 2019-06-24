@@ -1,9 +1,14 @@
 .user-name {
   float: left;
+  cursor: pointer;
 }
 
 .user-delete-icon {
   margin: 0 10px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.add-new-user {
+    cursor: pointer;
 }

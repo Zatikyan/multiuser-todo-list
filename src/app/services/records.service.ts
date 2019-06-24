@@ -17,7 +17,7 @@ export class RecordsService {
   }
 
   get userRecords(): Record[] {
-    return this.records[this.activeUserId] || [];
+    return this.records[this.activeUserId];
   }
 
   set setUserRecords(records: Record[]) {
@@ -25,7 +25,7 @@ export class RecordsService {
   }
 
   set addRecord(record: Record) {
-    this.userRecords.push(record);
+    this.records[this.activeUserId].push(record);
     this.saveRecords();
   }
 
@@ -127,7 +127,7 @@ export class RecordsService {
     localStorage.setItem('todo_list_records', JSON.stringify(this.records));
   }
 
-  private getExistingRecords(): Record[] {
+  private getExistingRecords(): any {
     const records = JSON.parse(localStorage.getItem('todo_list_records')) || {};
     return records;
   }
